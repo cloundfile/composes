@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  scrap:
+    image: n8nio/n8n
+    container_name: scrap
+    ports:
+      - '5678:5678'
+    volumes:
+      - ./:/home/node/.n8n
+    environment:
+      GENERIC_TIMEZONE: America/Sao_Paulo
+      N8N_SECURE_COOKIE: false
+      WEBHOOK_URL: https://agente.inneo.org
+    user: "${UID}:${GID}"
+    restart: unless-stopped
+    network_mode: cronus_rede
